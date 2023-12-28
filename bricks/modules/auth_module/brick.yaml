@@ -1,4 +1,4 @@
-name: Auth Module
+name: auth_module
 description: Mobile Auth Module with sign in and sign up modules, widgets and cubits
 version: 1.0.0
 #vars:
