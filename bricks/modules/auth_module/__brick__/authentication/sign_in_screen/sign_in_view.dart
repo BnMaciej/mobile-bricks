@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'cubit/sign_in_cubit.dart';
+import 'cubit/sign_in_cubit_event.dart';
 
 ///This is basic sign in view with app/corporation logo, two input fields: #email #password and sign in button
 class SignInView extends StatelessWidget {
@@ -11,9 +12,8 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GrowAppBar(),
       body: SafeArea(
-        child: BlocPresentationListener<SignInCubit, LoginCubitEvent>(
+        child: BlocPresentationListener<SignInCubit, SignInCubitEvent>(
           listener: onBlocPresentationEvent,
           child: SingleChildScrollView(
             child: Padding(
@@ -30,18 +30,17 @@ class SignInView extends StatelessWidget {
     );
   }
 
-  void onBlocPresentationEvent(BuildContext context, LoginCubitEvent? event) {
+  void onBlocPresentationEvent(BuildContext context, SignInCubitEvent? event) {
     switch (event.runtimeType) {
       case UserNotFound:
-        context.showErrorSnackBar(
-          title: context.localizations.loginPageUserNotFoundExceptionTitle,
-          body: context.localizations.loginPageUserNotFoundExceptionMessage,
-          onBodyLinkTapped: () => Modular.to.pushNamed(SignUpScreen.path.relativePath),
-        );
-      case LoginError:
-        context.showDefaultErrorSnackbar();
+        //TODO: Implement UserNotFound error
+        throw UnimplementedError();
+      case SignInError:
+        //TODO: Implement SignInError error
+        throw UnimplementedError();
       default:
-        context.showDefaultErrorSnackbar();
+        //TODO: Implement default and others errors
+        throw UnimplementedError();
     }
   }
 }
